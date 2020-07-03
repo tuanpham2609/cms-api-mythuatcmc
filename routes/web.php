@@ -18,4 +18,5 @@ Route::get('/', function () {
 });
 Route::group(['prefix' => 'admin'],function(){
 	Route::resource('about','AboutController');
+	Route::resource('upload-img','ImageControllerController');
 });
