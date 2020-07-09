@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class SignOutController extends Controller
 {
     public function __invoke(){
-        dd('out');
+        auth()->logout();
     }
 }
