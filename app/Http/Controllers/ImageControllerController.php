@@ -100,8 +100,15 @@ class ImageControllerController extends Controller
      * @param  \App\imageController  $imageController
      * @return \Illuminate\Http\Response
      */
-    public function destroy(imageController $imageController)
+    public function destroy($id)
     {
-        //
+        $img = Images::find($id);
+        if(File::exists('img/'.$img->img)){
+            unlink('img/'.$img->img);
+        }
+        $img->delete();
+        return response()->json([
+            'mess'=>'Đã xóa thành công !!'
+        ]);
     }
 }
