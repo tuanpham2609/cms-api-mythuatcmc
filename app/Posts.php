@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class Posts extends Model
 {
     protected $table = 'posts';
     protected $fillable = [
-        'idCategory','name','slug','short_content','description','image','new_highlights'
+        'idCategory','name','slug','short_content','description','image','new_highlights','view'
     ];
     public function Categories(){
         return $this->belongsTo('App/Category','idCategory','id');

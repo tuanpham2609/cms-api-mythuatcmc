@@ -22,6 +22,7 @@ class CreatePostsTable extends Migration
             $table->text('description');
             $table->string('image');
             $table->integer('new_highlights');
+            $table->integer('view');
             $table->timestamps();
         });
     }

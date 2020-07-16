@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Post;
 use Illuminate\Http\Request;
+use App\Posts;
 
 class PostController extends Controller
 {
@@ -14,7 +15,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $post = Posts::paginate(10);
+        return response()->json([
+            'categories'=>$post
+        ]);
     }
 
     /**
@@ -35,7 +39,11 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        Posts::create($data);
+        return response()->json([
+            'message'=>'Tạo mới thành công'
+        ]);
     }
 
     /**
@@ -55,9 +63,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function edit(Post $post)
+    public function edit($id)
     {
-        //
+        $post = Posts::find($id);
+        return response()->json([
+            'data'=>$post
+        ]);
     }
 
     /**
@@ -67,9 +78,14 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, $id)
     {
-        //
+        $post = Posts::find($id);
+        $data = $request->all();
+        $post->update($data);
+        return response()->json([
+            'messsage'=>'Update thành công'
+        ]);
     }
 
     /**
@@ -78,8 +94,12 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Post $post)
+    public function destroy($id)
     {
-        //
+        $post = Posts::find($id);
+        $post->delete();
+        return response()->json([
+            'message'=>'Xóa thành công'
+        ]);
     }
 }
