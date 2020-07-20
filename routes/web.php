@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::group(['prefix' => 'admin'],function(){
+Route::group(['prefix' => 'admin' , 'middleware' => 'auth'],function(){
 	Route::resource('about','AboutController');
 	Route::resource('category','CategoryController');
 	Route::resource('post','PostController');
+	Route::resource('user','UserController');
 	Route::resource('upload-img','ImageControllerController');
 	//custom-api
 	Route::get('category-all','CustomController@getallcategory');
