@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\About;
 use Illuminate\Http\Request;
 use App\Abouts;
+use App\Homes;
 
 class AboutController extends Controller
 {
@@ -66,8 +67,10 @@ class AboutController extends Controller
     public function edit($id)
     {
         $about = Abouts::find($id);
+        $home = Homes::find($id);
         return response()->json([
-            'data'=>$about
+            'data'=>$about,
+            'home'=>$home,
         ]);
     }
 

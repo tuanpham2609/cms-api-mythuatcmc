@@ -22,6 +22,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'],function(){
 	Route::resource('post','PostController');
 	Route::resource('user','UserController');
 	Route::resource('upload-img','ImageControllerController');
+	Route::resource('home','HomeController');
 	//custom-api
 	Route::get('category-all','CustomController@getallcategory');
 });

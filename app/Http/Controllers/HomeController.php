@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Category;
+use App\Home;
 use Illuminate\Http\Request;
-use App\Categories;
+use App\Homes;
 
-class CategoryController extends Controller
+class HomeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,10 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cate = Categories::orderBy('created_at', 'desc')->paginate(10);
-        return response()->json([
-            'categories'=>$cate
-        ]);
+        //
     }
 
     /**
@@ -39,8 +36,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $data = $request->all();
-        Categories::create($data);
+        $homes = $request->all();
+        Homes::create($homes);
         return response()->json([
             'message'=>'Tạo mới thành công'
         ]);
@@ -49,10 +46,10 @@ class CategoryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Home  $home
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show(Home $home)
     {
         //
     }
@@ -60,14 +57,14 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Home  $home
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
-        $cate = Categories::find($id);
+        $home = Homes::find($id);
         return response()->json([
-            'data'=>$cate
+            'data'=>$home
         ]);
     }
 
@@ -75,14 +72,14 @@ class CategoryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Category  $category
+     * @param  \App\Home  $home
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        $cate = Categories::find($id);
+        $home = Homes::find($id);
         $data = $request->all();
-        $cate->update($data);
+        $home->update($data);
         return response()->json([
             'messsage'=>'Update thành công'
         ]);
@@ -91,15 +88,11 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Category  $category
+     * @param  \App\Home  $home
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Home $home)
     {
-        $cate = Categories::find($id);
-        $cate->delete();
-        return response()->json([
-            'message'=>'Xóa thành công'
-        ]);
+        //
     }
 }
