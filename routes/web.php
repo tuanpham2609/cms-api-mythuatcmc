@@ -26,3 +26,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'],function(){
 	//custom-api
 	Route::get('category-all','CustomController@getallcategory');
 });
+Route::group(['prefix' => 'web' ],function(){
+	Route::get('header','WebController@getHeader');
+});
+
