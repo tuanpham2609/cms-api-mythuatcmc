@@ -28,5 +28,7 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'],function(){
 });
 Route::group(['prefix' => 'web' ],function(){
 	Route::get('header','WebController@getHeader');
+	Route::get('post/{id}','WebController@postDetail');
+	Route::get('category/{id}','WebController@getCategory');
 });
 
