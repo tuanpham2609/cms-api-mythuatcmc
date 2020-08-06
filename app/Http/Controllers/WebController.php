@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Categories;
 use App\Posts;
 use App\Homes;
+use App\Comments;
 
 class WebController extends Controller
 {
@@ -30,7 +31,7 @@ class WebController extends Controller
             'GiaiTri'=>$GiaiTri,
         ]);
     }
-    public function postDetail($id){
+    public function getDetail($id){
         $post = Posts::find($id);
         $category = Posts::where('idCategory',$post->idCategory)->take(5)->get();
         return response()->json([
@@ -44,6 +45,27 @@ class WebController extends Controller
         return response()->json([
             'siderbar'=>$siderbar,
             'category'=>$category,
+        ]);
+    }
+    public function postcomment(Request $request){
+        $comment = $request->all();
+        Comments::create($comment);
+        return response()->json([
+            'message'=>'Comment thành công!!'
+        ]);
+    }
+    public function getComment($id){
+        $comment = Comments::where('idPost',$id)->orderBy('created_at', 'desc')->paginate(2);
+        return response()->json([
+            'comments'=> $comment
+        ]);
+    }
+    public function updateComment(Request $request,$id){
+        $comment = Comments::find($id);
+        $data = $request->all();
+        $comment->update($data);
+        return response()->json([
+            'messsage'=>'Update thành công comment !!!'
         ]);
     }
 }

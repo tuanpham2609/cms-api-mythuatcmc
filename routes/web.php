@@ -28,7 +28,10 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'],function(){
 });
 Route::group(['prefix' => 'web' ],function(){
 	Route::get('header','WebController@getHeader');
-	Route::get('post/{id}','WebController@postDetail');
+	Route::get('post/{id}','WebController@getDetail');
 	Route::get('category/{id}','WebController@getCategory');
+	Route::post('comment','WebController@postcomment');
+	Route::get('comment/{id}','WebController@getComment');
+	Route::post('comment/{id}','WebController@updateComment');
 });
 
