@@ -15,7 +15,8 @@ class CreateHomesTable extends Migration
     {
         Schema::create('homes', function (Blueprint $table) {
             $table->id();
-            $table->text('data');
+            $table->string('image');
+            $table->json('data');
             $table->timestamps();
         });
     }

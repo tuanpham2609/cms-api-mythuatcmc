@@ -16,7 +16,7 @@ class ImageControllerController extends Controller
      */
     public function index()
     {
-        $images = Images::paginate(10);
+        $images = Images::orderBy('created_at', 'desc')->paginate(10);
         return response()->json([
             'images'=>$images
         ]);
