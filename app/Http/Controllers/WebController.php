@@ -7,6 +7,7 @@ use App\Categories;
 use App\Posts;
 use App\Homes;
 use App\Comments;
+use App\Contacts;
 
 class WebController extends Controller
 {
@@ -66,6 +67,13 @@ class WebController extends Controller
         $comment->update($data);
         return response()->json([
             'messsage'=>'Update thành công comment !!!'
+        ]);
+    }
+    public function createContact(Request $request) {
+        $contact = $request->all();
+        Contacts::create($contact);
+        return response()->json([
+            'message'=>'Contact thành công!!'
         ]);
     }
 }

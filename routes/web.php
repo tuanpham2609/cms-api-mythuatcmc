@@ -33,5 +33,6 @@ Route::group(['prefix' => 'web' ],function(){
 	Route::post('comment','WebController@postcomment');
 	Route::get('comment/{id}','WebController@getComment');
 	Route::post('comment/{id}','WebController@updateComment');
+	Route::post('contact','WebController@createContact');
 });
 
