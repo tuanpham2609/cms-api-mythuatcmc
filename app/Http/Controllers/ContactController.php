@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Contact;
+use App\Contacts;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -14,7 +14,10 @@ class ContactController extends Controller
      */
     public function index()
     {
-        //
+        $contact = Contacts::orderBy('created_at', 'desc')->paginate(10);
+        return response()->json([
+            'contacts'=>$contact
+        ]);
     }
 
     /**
@@ -78,8 +81,12 @@ class ContactController extends Controller
      * @param  \App\Contact  $contact
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contact $contact)
+    public function destroy($id)
     {
-        //
+        $contact = Contacts::find($id);
+        $contact->delete();
+        return response()->json([
+            'message'=>'Xóa thành công'
+        ]);
     }
 }

@@ -23,6 +23,8 @@ Route::group(['prefix' => 'admin' , 'middleware' => 'auth'],function(){
 	Route::resource('user','UserController');
 	Route::resource('upload-img','ImageControllerController');
 	Route::resource('home','HomeController');
+	Route::resource('contact','ContactController');
+	Route::resource('comment','CommentController');
 	//custom-api
 	Route::get('category-all','CustomController@getallcategory');
 });

@@ -14,7 +14,7 @@ class WebController extends Controller
     //
     public function getHeader(){
         $menu = Categories::all();
-        $logo = Homes::all();
+        $logo = Homes::first();
         $XH = Posts::orderBy('created_at', 'desc')->where('idCategory','=',22)->take(10)->get();
         $review = Posts::orderBy('created_at', 'desc')->where('idCategory','=',23)->take(10)->get();
         $KinhTe = Posts::orderBy('created_at', 'desc')->where('idCategory','=',18)->take(10)->get();

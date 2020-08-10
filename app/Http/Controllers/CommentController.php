@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Comment;
+use App\Comments;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -14,7 +14,10 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
+        $comment = Comments::orderBy('created_at', 'desc')->paginate(10);
+        return response()->json([
+            'comments'=>$comment
+        ]);
     }
 
     /**
@@ -78,8 +81,12 @@ class CommentController extends Controller
      * @param  \App\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy($id)
     {
-        //
+        $comment = Comments::find($id);
+        $comment->delete();
+        return response()->json([
+            'message'=>'Xóa thành công'
+        ]);
     }
 }
