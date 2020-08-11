@@ -15,12 +15,12 @@ class WebController extends Controller
     public function getHeader(){
         $menu = Categories::all();
         $logo = Homes::first();
-        $XH = Posts::orderBy('created_at', 'desc')->where('idCategory','=',22)->take(10)->get();
-        $review = Posts::orderBy('created_at', 'desc')->where('idCategory','=',23)->take(10)->get();
-        $KinhTe = Posts::orderBy('created_at', 'desc')->where('idCategory','=',18)->take(10)->get();
-        $GiaoDuc = Posts::orderBy('created_at', 'desc')->where('idCategory','=',19)->take(10)->get();
-        $GiaiTri = Posts::orderBy('created_at', 'desc')->where('idCategory','=',21)->take(10)->get();
-        $topTrending = Posts::orderBy('created_at', 'desc')->where('new_highlights','=',1)->take(10)->get();
+        $XH = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','xa-hoi')->take(15)->get();
+        $review = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','review')->take(15)->get();
+        $KinhTe = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','kinh-te')->take(15)->get();
+        $GiaoDuc = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','giao-duc')->take(15)->get();
+        $GiaiTri = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','giai-tri')->take(15)->get();
+        $topTrending = Posts::orderBy('created_at', 'desc')->where('new_highlights','=',1)->take(15)->get();
         return response()->json([
             'menu'=>$menu,
             'logo'=>$logo,
