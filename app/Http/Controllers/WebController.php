@@ -20,8 +20,8 @@ class WebController extends Controller
         $KinhTe = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','kinh-te')->take(5)->get();
         $GiaoDuc = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','giao-duc')->take(5)->get();
         $GiaiTri = Posts::orderBy('created_at', 'desc')->where('slugCategory','=','giai-tri')->take(5)->get();
-        $topTrending = Posts::orderBy('created_at', 'desc')->where('new_highlights','=',1)->take(15)->get();
-        $homePost = Posts::orderBy('created_at', 'desc')->take(80)->get();
+        $topTrending = Posts::orderBy('created_at', 'desc')->where('new_highlights','=',1)->get();
+        $homePost = Posts::orderBy('created_at', 'desc')->get();
         return response()->json([
             'menu'=>$menu,
             'logo'=>$logo,
